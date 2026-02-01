@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be My Valentine? 💕</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    .font-pacifico { font-family: 'Pacifico', cursive; }
+    .font-nunito { font-family: 'Nunito', sans-serif; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+    
+    @keyframes bounce-in {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    @keyframes confetti-fall {
+      0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+    
+    .float { animation: float 3s ease-in-out infinite; }
+    .heartbeat { animation: heartbeat 1s ease-in-out infinite; }
+    .wiggle { animation: wiggle 0.5s ease-in-out infinite; }
+    .bounce-in { animation: bounce-in 0.5s ease-out forwards; }
+    
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: confetti-fall 3s linear forwards;
+    }
+    
+    .btn-yes {
+      transition: all 0.3s ease;
+    }
+    
+    .btn-yes:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+    }
+    
+    .btn-no {
+      transition: all 0.3s ease;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-nunito overflow-auto">
+  <div id="app-wrapper" class="w-full h-full min-h-full flex items-center justify-center p-4" style="background: linear-gradient(135deg, #fef3f5 0%, #ffe5ec 50%, #ffd6e0 100%);"><!-- Main Card -->
+   <div id="card" class="relative rounded-2xl shadow-xl p-8 max-w-md w-full text-center overflow-hidden" style="background: linear-gradient(to bottom, #ffffff 0%, #fff5f7 100%);"><!-- Subtle texture overlay -->
+    <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h20v20H0z\' fill=\'none\'/%3E%3Cpath d=\'M0 0h10v10H0zm10 10h10v10H10z\' fill=\'%23000\'/%3E%3C/svg%3E');"></div><!-- Cat SVG -->
+    <div id="cat-container" class="relative z-10 mb-6 float">
+     <svg id="cat-svg" viewbox="0 0 240 240" class="w-56 h-56 mx-auto drop-shadow-lg"><defs><!-- Gradient for realistic fur shading -->
+       <radialgradient id="bodyGrad" cx="50%" cy="40%">
+        <stop offset="0%" style="stop-color:#FFB8A0;stop-opacity:1" />
+        <stop offset="70%" style="stop-color:#FF9B5E;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#E87F3F;stop-opacity:1" />
+       </radialgradient>
+       <radialgradient id="headGrad" cx="50%" cy="30%">
+        <stop offset="0%" style="stop-color:#FFD4BF;stop-opacity:1" />
+        <stop offset="60%" style="stop-color:#FF9B5E;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#E87F3F;stop-opacity:1" />
+       </radialgradient>
+       <radialgradient id="chestGrad" cx="50%" cy="20%">
+        <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+        <stop offset="80%" style="stop-color:#FFE8D6;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#FFD4BF;stop-opacity:1" />
+       </radialgradient>
+       <lineargradient id="eyeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#6B8E7F;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#3D5A4D;stop-opacity:1" />
+       </lineargradient>
+      </defs> <!-- Shadow --> <ellipse cx="120" cy="220" rx="70" ry="12" fill="#000000" opacity="0.1" /> <!-- Tail --> <path d="M165,175 Q190,155 200,130 Q205,110 198,95" stroke="url(#bodyGrad)" stroke-width="16" fill="none" stroke-linecap="round" opacity="0.95" /> <path d="M165,175 Q190,155 200,130 Q205,110 198,95" stroke="#E87F3F" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.6" /> <!-- Back leg --> <ellipse cx="145" cy="195" rx="12" ry="22" fill="url(#bodyGrad)" /> <ellipse cx="145" cy="213" rx="10" ry="7" fill="#FFB8A8" /> <!-- Cat Body --> <ellipse cx="120" cy="165" rx="55" ry="42" fill="url(#bodyGrad)" /> <!-- Body shading --> <ellipse cx="120" cy="175" rx="50" ry="30" fill="#E87F3F" opacity="0.2" /> <!-- Chest fur --> <ellipse cx="120" cy="165" rx="28" ry="35" fill="url(#chestGrad)" /> <!-- Neck connection --> <ellipse cx="120" cy="130" rx="32" ry="22" fill="url(#bodyGrad)" /> <!-- Cat Head --> <ellipse cx="120" cy="100" rx="48" ry="46" fill="url(#headGrad)" /> <!-- Head shading --> <ellipse cx="120" cy="110" rx="42" ry="38" fill="#E87F3F" opacity="0.15" /> <!-- Face fur (lighter) --> <ellipse cx="120" cy="108" rx="32" ry="36" fill="url(#chestGrad)" /> <!-- Muzzle highlight --> <ellipse cx="120" cy="115" rx="24" ry="20" fill="#FFFFFF" opacity="0.4" /> <!-- Left Ear outer --> <path d="M80,65 Q72,35 90,42 Q96,48 98,68 Z" fill="url(#headGrad)" /> <!-- Left Ear shading --> <path d="M80,65 Q72,35 90,42 Q96,48 98,68 Z" fill="#E87F3F" opacity="0.2" /> <!-- Left Ear inner --> <path d="M86,62 Q82,45 92,48 Q95,52 96,64 Z" fill="#FFB8A8" /> <!-- Right Ear outer --> <path d="M160,65 Q168,35 150,42 Q144,48 142,68 Z" fill="url(#headGrad)" /> <!-- Right Ear shading --> <path d="M160,65 Q168,35 150,42 Q144,48 142,68 Z" fill="#E87F3F" opacity="0.2" /> <!-- Right Ear inner --> <path d="M154,62 Q158,45 148,48 Q145,52 144,64 Z" fill="#FFB8A8" /> <!-- Ear fur tufts --> <circle cx="88" cy="52" r="3.5" fill="#FF9B5E" opacity="0.7" /> <circle cx="91" cy="48" r="3" fill="#FFB8A0" opacity="0.7" /> <circle cx="86" cy="56" r="2.5" fill="#FF9B5E" opacity="0.7" /> <circle cx="152" cy="52" r="3.5" fill="#FF9B5E" opacity="0.7" /> <circle cx="149" cy="48" r="3" fill="#FFB8A0" opacity="0.7" /> <circle cx="154" cy="56" r="2.5" fill="#FF9B5E" opacity="0.7" /> <!-- Forehead markings --> <path d="M120,75 Q115,68 112,75 Q110,82 112,85" stroke="#E87F3F" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round" /> <path d="M120,75 Q125,68 128,75 Q130,82 128,85" stroke="#E87F3F" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round" /> <!-- Eyes --> <ellipse id="left-eye" cx="100" cy="98" rx="12" ry="15" fill="url(#eyeGrad)" /> <ellipse id="right-eye" cx="140" cy="98" rx="12" ry="15" fill="url(#eyeGrad)" /> <!-- Eye highlights for realism --> <ellipse cx="100" cy="98" rx="12" ry="15" fill="#000000" opacity="0.3" /> <ellipse cx="140" cy="98" rx="12" ry="15" fill="#000000" opacity="0.3" /> <!-- Pupils (dilated for cuteness) --> <ellipse cx="100" cy="100" rx="8" ry="11" fill="#000000" /> <ellipse cx="140" cy="100" rx="8" ry="11" fill="#000000" /> <!-- Eye shine (bigger for emotion) --> <circle cx="104" cy="95" r="4" fill="white" opacity="0.9" /> <circle cx="144" cy="95" r="4" fill="white" opacity="0.9" /> <circle cx="98" cy="102" r="2.5" fill="white" opacity="0.6" /> <circle cx="138" cy="102" r="2.5" fill="white" opacity="0.6" /> <ellipse cx="102" cy="92" rx="2" ry="3" fill="white" opacity="0.4" /> <ellipse cx="142" cy="92" rx="2" ry="3" fill="white" opacity="0.4" /> <!-- Eye contour --> <path d="M88,96 Q88,92 92,90" stroke="#5A4A42" stroke-width="1.5" fill="none" opacity="0.4" /> <path d="M152,96 Q152,92 148,90" stroke="#5A4A42" stroke-width="1.5" fill="none" opacity="0.4" /> <!-- Nose (detailed) --> <path d="M120,115 L116,120 Q120,123 124,120 Z" fill="#D85A7F" /> <ellipse cx="120" cy="117" rx="4" ry="3" fill="#E87F99" opacity="0.6" /> <line x1="120" y1="121" x2="120" y2="126" stroke="#D85A7F" stroke-width="2.5" /> <!-- Mouth --> <path id="cat-mouth" d="M120,126 Q115,131 110,129 M120,126 Q125,131 130,129" stroke="#5A4A42" stroke-width="2.5" fill="none" stroke-linecap="round" /> <!-- Whiskers (realistic with gradient opacity) --> <line x1="65" y1="105" x2="94" y2="107" stroke="#2D3748" stroke-width="1.5" opacity="0.7" stroke-linecap="round" /> <line x1="60" y1="112" x2="94" y2="112" stroke="#2D3748" stroke-width="1.5" opacity="0.7" stroke-linecap="round" /> <line x1="65" y1="119" x2="94" y2="117" stroke="#2D3748" stroke-width="1.5" opacity="0.7" stroke-linecap="round" /> <line x1="146" y1="107" x2="175" y2="105" stroke="#2D3748" stroke-width="1.5" opacity="0.7" stroke-linecap="round" /> <line x1="146" y1="112" x2="180" y2="112" stroke="#2D3748" stroke-width="1.5" opacity="0.7" stroke-linecap="round" /> <line x1="146" y1="117" x2="175" y2="119" stroke="#2D3748" stroke-width="1.5" opacity="0.7" stroke-linecap="round" /> <!-- Blush --> <ellipse cx="82" cy="112" rx="11" ry="7" fill="#FFB8A8" opacity="0.6" /> <ellipse cx="158" cy="112" rx="11" ry="7" fill="#FFB8A8" opacity="0.6" /> <!-- Front legs --> <ellipse cx="95" cy="195" rx="11" ry="24" fill="url(#bodyGrad)" /> <ellipse cx="145" cy="195" rx="11" ry="24" fill="url(#bodyGrad)" /> <!-- Leg shading --> <ellipse cx="95" cy="200" rx="9" ry="18" fill="#E87F3F" opacity="0.2" /> <ellipse cx="145" cy="200" rx="9" ry="18" fill="#E87F3F" opacity="0.2" /> <!-- Paw pads (front) --> <ellipse cx="95" cy="215" rx="7" ry="5" fill="#FFB8A8" /> <ellipse cx="145" cy="215" rx="7" ry="5" fill="#FFB8A8" /> <circle cx="92" cy="217" r="2" fill="#E8A090" /> <circle cx="98" cy="217" r="2" fill="#E8A090" /> <circle cx="142" cy="217" r="2" fill="#E8A090" /> <circle cx="148" cy="217" r="2" fill="#E8A090" /> <!-- Paws holding heart --> <ellipse cx="95" cy="175" rx="15" ry="12" fill="url(#bodyGrad)" /> <ellipse cx="145" cy="175" rx="15" ry="12" fill="url(#bodyGrad)" /> <!-- Paw pads (holding) --> <ellipse cx="95" cy="177" rx="6" ry="4" fill="#FFB8A8" /> <ellipse cx="145" cy="177" rx="6" ry="4" fill="#FFB8A8" /> <circle cx="91" cy="175" r="2" fill="#E8A090" /> <circle cx="99" cy="175" r="2" fill="#E8A090" /> <circle cx="141" cy="175" r="2" fill="#E8A090" /> <circle cx="149" cy="175" r="2" fill="#E8A090" /> <!-- Little heart with gradient --> <defs>
+       <lineargradient id="heartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#FF8BA8;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#FF6B9D;stop-opacity:1" />
+       </lineargradient>
+      </defs> <path id="cat-heart" d="M120,165 C120,159 108,148 96,159 C84,170 120,195 120,195 C120,195 156,170 144,159 C132,148 120,159 120,165" fill="url(#heartGrad)" class="heartbeat" /> <!-- Heart highlight --> <ellipse cx="110" cy="165" rx="6" ry="8" fill="#FFFFFF" opacity="0.3" />
+     </svg>
+    </div><!-- Message -->
+    <div class="relative z-10">
+     <p id="recipient-display" class="text-rose-500 font-nunito text-lg mb-2 font-semibold">Hey there! 💫</p>
+     <h1 id="main-question" class="font-pacifico text-4xl md:text-5xl mb-6" style="color: #d84673;">Will you be my Valentine?</h1><!-- Cat Speech Bubble -->
+     <div id="speech-bubble" class="rounded-xl p-4 mb-6 relative shadow-sm" style="background: linear-gradient(135deg, #fff0f3 0%, #ffe6eb 100%);">
+      <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 rotate-45" style="background: #fff0f3;"></div>
+      <p id="cat-message" class="text-rose-600 font-bold text-lg">Purrrlease? 🥺</p>
+     </div><!-- Buttons -->
+     <div id="buttons-container" class="flex justify-center gap-4 flex-wrap"><button id="yes-btn" class="btn-yes text-white font-bold py-4 px-10 rounded-full text-xl shadow-lg" style="background: linear-gradient(135deg, #e85d8a 0%, #d84673 100%);"> Yes! 💕 </button> <button id="no-btn" class="btn-no bg-gray-100 text-gray-500 font-semibold py-4 px-10 rounded-full text-xl hover:bg-gray-200 border border-gray-200"> No 😿 </button>
+     </div><!-- Attempt Counter -->
+     <p id="attempt-text" class="mt-4 text-rose-400 text-sm opacity-0 transition-opacity duration-300 font-medium"></p>
+    </div><!-- Success Screen (Hidden initially) -->
+    <div id="success-screen" class="hidden absolute inset-0 rounded-2xl flex flex-col items-center justify-center p-8 z-20" style="background: linear-gradient(135deg, #e85d8a 0%, #d84673 50%, #c73866 100%);">
+     <div class="text-6xl mb-4 bounce-in">
+      💕
+     </div>
+     <h2 class="font-pacifico text-5xl text-white mb-4 bounce-in drop-shadow-lg" style="animation-delay: 0.2s;">Yay!</h2>
+     <p class="text-white text-xl font-semibold bounce-in" style="animation-delay: 0.4s;">You made this kitty so happy!</p>
+     <div class="mt-6 text-8xl bounce-in" style="animation-delay: 0.6s;">
+      😻
+     </div>
+     <p class="text-white/90 mt-4 text-lg bounce-in font-medium" style="animation-delay: 0.8s;">Can't wait to be your Valentine! 💝</p>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      main_question: "Will you be my Valentine?",
+      recipient_name: "",
+      primary_color: "#ec4899",
+      secondary_color: "#ffffff",
+      text_color: "#be185d",
+      accent_color: "#f472b6",
+      button_color: "#ec4899"
+    };
+
+    let config = { ...defaultConfig };
+    let noCount = 0;
+    
+    const catMessages = [
+      "Purrrlease? 🥺",
+      "Pretty purrrlease with a cherry on top? 😿",
+      "I'll be heartbroken forever... 💔",
+      "My little kitty heart can't handle this! 😢",
+      "*gives you the saddest meow ever* 🐱",
+      "I promise to be the BEST Valentine ever! I'll bring you mice! 🌹",
+      "I have treats AND catnip! Just say yes! 🍬",
+      "Fine... I'll knock ALL your things off tables until you say yes! 😼",
+      "Look at my droopy whiskers... they miss you already 😿",
+      "*gives you the biggest, wettest kitty eyes* 🥺",
+      "I've been practicing this pose for 3 hours! My paws hurt! 😭",
+      "Even my tail stopped wagging... SEE WHAT YOU'VE DONE?! 😢",
+      "I'll share my FAVORITE cardboard box! The one I sleep in! 📦",
+      "PLEASE! I already told ALL my 47 cat friends you'd say yes! 😭",
+      "I made you a Valentine's card with my paw prints! 🐾",
+      "I'll let you pet my belly! THAT'S how serious I am! 😿",
+      "I saved my best purr just for you... *sad purr* 💔",
+      "What if I promise no zoomies at 3am? For a whole week! 🥺",
+      "I'll catch that red dot for you! I SWEAR! 🔴",
+      "My therapist says I have abandonment issues now... 😢",
+      "I'M LITERALLY BEGGING! Look, I'm on my knees! ...wait, I'm always on my knees 🐱",
+      "You're breaking my nine hearts! One for each life! 💔💔💔",
+      "I'll bring you PREMIUM mice, not those cheap field mice! 🐭",
+      "The other cats are laughing at me... PLEASE! 😭",
+      "I haven't eaten in minutes because of the stress! MINUTES! 🥺",
+      "I'll do that cute head tilt thing! *tilts head* ����",
+      "You know what? I'm not crying. YOU'RE CRYING! 😭😭😭",
+      "I've been here so long my paws are getting tired... 😢",
+      "FINE! You can name all my future kittens! 🐱",
+      "I'm running out of cat puns... this is se-rious meow! 😭",
+      "At this point I'm just impressed by your resistance... BUT STILL! 🥺",
+      "My ancestors are watching and they're SO disappointed in your choice 👻",
+      "I will literally love you FUREVER! Get it? FUR-ever? 💕",
+      "You're the cat's meow! The cat's pajamas! The cat's... EVERYTHING! 😿",
+      "One word: PLEASE! Two words: PRETTY PLEASE! Three words: I'M DYING HERE! 😭"
+    ];
+
+    const noBtn = document.getElementById('no-btn');
+    const yesBtn = document.getElementById('yes-btn');
+    const catMessage = document.getElementById('cat-message');
+    const attemptText = document.getElementById('attempt-text');
+    const successScreen = document.getElementById('success-screen');
+    const catContainer = document.getElementById('cat-container');
+    const catMouth = document.getElementById('cat-mouth');
+    const speechBubble = document.getElementById('speech-bubble');
+    const mainQuestion = document.getElementById('main-question');
+    const recipientDisplay = document.getElementById('recipient-display');
+
+    function updateUI() {
+      mainQuestion.textContent = config.main_question || defaultConfig.main_question;
+      
+      if (config.recipient_name && config.recipient_name.trim()) {
+        recipientDisplay.textContent = `Hey ${config.recipient_name}! 💫`;
+      } else {
+        recipientDisplay.textContent = "Hey there! 💫";
+      }
+    }
+
+    function shrinkNoButton() {
+      const currentSize = parseFloat(noBtn.style.transform?.match(/scale\(([\d.]+)\)/)?.[1] || 1);
+      const newSize = Math.max(0.3, currentSize - 0.1);
+      noBtn.style.transform = `scale(${newSize})`;
+    }
+
+    function makeCatSad() {
+      catMouth.setAttribute('d', 'M120,126 Q115,122 110,124 M120,126 Q125,122 130,124');
+      catContainer.classList.remove('float');
+      catContainer.classList.add('wiggle');
+    }
+
+    function makeCatHappy() {
+      catMouth.setAttribute('d', 'M120,126 Q115,131 110,129 M120,126 Q125,131 130,129');
+      catContainer.classList.remove('wiggle');
+      catContainer.classList.add('float');
+    }
+
+    function createConfetti() {
+      const colors = ['#ec4899', '#f472b6', '#fb7185', '#fda4af', '#fecdd3', '#fbbf24', '#a855f7'];
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+          confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+          document.body.appendChild(confetti);
+          
+          setTimeout(() => confetti.remove(), 4000);
+        }, i * 50);
+      }
+    }
+
+    noBtn.addEventListener('click', () => {
+      noCount++;
+      
+      const messageIndex = Math.min(noCount - 1, catMessages.length - 1);
+      catMessage.textContent = catMessages[messageIndex];
+      
+      shrinkNoButton();
+      makeCatSad();
+      
+      speechBubble.classList.add('wiggle');
+      setTimeout(() => speechBubble.classList.remove('wiggle'), 500);
+      
+      yesBtn.style.transform = `scale(${1 + noCount * 0.05})`;
+      
+      if (noCount >= 5) {
+        const colors = ['linear-gradient(135deg, #e85d8a 0%, #d84673 100%)', 'linear-gradient(135deg, #d84673 0%, #c73866 100%)', 'linear-gradient(135deg, #e85d8a 0%, #c73866 100%)'];
+        yesBtn.style.background = colors[noCount % colors.length];
+      }
+    });
+
+    yesBtn.addEventListener('click', () => {
+      makeCatHappy();
+      successScreen.classList.remove('hidden');
+      createConfetti();
+    });
+
+    async function onConfigChange(newConfig) {
+      config = { ...defaultConfig, ...newConfig };
+      updateUI();
+    }
+
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              cfg.primary_color = value;
+              window.elementSdk.setConfig({ primary_color: value });
+            }
+          },
+          {
+            get: () => cfg.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              cfg.secondary_color = value;
+              window.elementSdk.setConfig({ secondary_color: value });
+            }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => {
+              cfg.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => cfg.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              cfg.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          },
+          {
+            get: () => cfg.button_color || defaultConfig.button_color,
+            set: (value) => {
+              cfg.button_color = value;
+              window.elementSdk.setConfig({ button_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ["main_question", cfg.main_question || defaultConfig.main_question],
+        ["recipient_name", cfg.recipient_name || defaultConfig.recipient_name]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    updateUI();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c70cb73a1759333',t:'MTc2OTk0MjA1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
